@@ -329,6 +329,7 @@ enum QemuConfig {
   x64._('qemu-x86_64', 'max', '/usr/lib/x86_64-linux-gnu/'),
   arm._('qemu-arm', 'max', '/usr/arm-linux-gnueabihf/'),
   arm64._('qemu-aarch64', 'max', '/usr/aarch64-linux-gnu/'),
+  loong64._('qemu-loongarch64', 'max', '/usr/loongarch64-linux-gnu/'),
   riscv32._(
     'qemu-riscv32',
     'rva23u32,zbc=on,zacas=on,zabha=on',
@@ -348,6 +349,7 @@ enum QemuConfig {
     Architecture.arm64: QemuConfig.arm64,
     Architecture.simarm64_arm64: QemuConfig.arm64,
     Architecture.arm64c: QemuConfig.arm64,
+    Architecture.loong64: QemuConfig.loong64,
     Architecture.riscv32: QemuConfig.riscv32,
     Architecture.riscv64: QemuConfig.riscv64,
   };
@@ -380,6 +382,7 @@ class DartVmRuntimeConfiguration extends RuntimeConfiguration {
       case Architecture.simarm:
       case Architecture.simarm64:
       case Architecture.simarm64c:
+      case Architecture.simloong64:
       case Architecture.simriscv32:
       case Architecture.simriscv64:
         multiplier *= 4;

@@ -196,7 +196,7 @@ class Disassembler : public AllStatic {
 
   static void DisassembleStub(const char* name, const Code& code);
 
-#if defined(TARGET_ARCH_RISCV32) || defined(TARGET_ARCH_RISCV64)
+#if defined(TARGET_ARCH_RISCV32) || defined(TARGET_ARCH_RISCV64) || defined(TARGET_ARCH_LOONG64)
   static void SetExtensions(ExtensionSet extensions) {
     extensions_ = extensions;
   }

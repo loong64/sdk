@@ -293,6 +293,8 @@ class JitDumpCodeObserver : public CodeObserver {
     return EM_ARM;
 #elif TARGET_ARCH_ARM64
     return EM_AARCH64;
+#elif TARGET_ARCH_LOONG64
+    return EM_LOONGARCH;
 #elif TARGET_ARCH_RISCV32 || TARGET_ARCH_RISCV64
     return EM_RISCV;
 #else

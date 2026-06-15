@@ -715,6 +715,8 @@ class RegisterSet : public ValueObject {
 #if defined(DART_TARGET_OS_MACOS) || defined(DART_TARGET_OS_WINDOWS)
       if (reg == R18) continue;
 #endif
+#elif defined(TARGET_ARCH_LOONG64)
+      if (reg == ZR || reg == TP || reg == SP || reg == FP || reg == R21) continue;
 #elif defined(TARGET_ARCH_RISCV32) || defined(TARGET_ARCH_RISCV64)
       if (reg == ZR || reg == TP || reg == GP) continue;
 #endif

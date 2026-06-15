@@ -7422,6 +7422,10 @@ static void EmitSanCall(FlowGraphCompiler* compiler,
   ASSERT(IsCalleeSavedRegister(NULL_REG));
   ASSERT(IsCalleeSavedRegister(HEAP_BITS));
   ASSERT(IsCalleeSavedRegister(DISPATCH_TABLE_REG));
+#elif defined(TARGET_ARCH_LOONG64)
+  ASSERT(IsCalleeSavedRegister(NULL_REG));
+  ASSERT(IsCalleeSavedRegister(DISPATCH_TABLE_REG)); 
+  ASSERT(IsCalleeSavedRegister(HEAP_BITS)); 
 #elif defined(TARGET_ARCH_RISCV64)
   ASSERT(IsCalleeSavedRegister(NULL_REG));
   ASSERT(IsCalleeSavedRegister(WRITE_BARRIER_STATE));

@@ -14,13 +14,14 @@ By default, the script installs sysroots for the following architectures:
 
 - `aarch64`
 - `armv7`
+- `loongarch64`
 - `riscv64`
 - `x86_64`
 
 To install sysroots for specific architectures, you can run:
 
 ``` sh
-./build/linux/alpine_sysroot_scripts/install-sysroot.sh aarch64 riscv64 x86_64 ...
+./build/linux/alpine_sysroot_scripts/install-sysroot.sh aarch64 loongarch64 riscv64 x86_64 ...
 ```
 
 On other linux systems, you can run the script with Alpine Linux container:

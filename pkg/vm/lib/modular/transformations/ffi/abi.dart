@@ -16,6 +16,7 @@ extension on _Architecture {
       case _Architecture.riscv32:
         return 4;
       case _Architecture.arm64:
+      case _Architecture.loong64:
       case _Architecture.x64:
       case _Architecture.riscv64:
         return 8;
@@ -82,6 +83,9 @@ class Abi {
   /// The application binary interface for linux on the IA32 architecture.
   static const linuxIA32 = _linuxIA32;
 
+  /// The application binary interface for linux on the LoongArch architecture.
+  static const linuxLoong64 = _linuxLoong64;
+
   /// The application binary interface for linux on the X64 architecture.
   static const linuxX64 = _linuxX64;
 
@@ -128,6 +132,7 @@ class Abi {
     iosX64,
     linuxArm,
     linuxArm64,
+    linuxLoong64,
     linuxIA32,
     linuxX64,
     linuxRiscv32,
@@ -172,6 +177,7 @@ class Abi {
   static const _iosX64 = Abi._(_Architecture.x64, _OS.ios);
   static const _linuxArm = Abi._(_Architecture.arm, _OS.linux);
   static const _linuxArm64 = Abi._(_Architecture.arm64, _OS.linux);
+  static const _linuxLoong64 = Abi._(_Architecture.loong64, _OS.linux);
   static const _linuxIA32 = Abi._(_Architecture.ia32, _OS.linux);
   static const _linuxX64 = Abi._(_Architecture.x64, _OS.linux);
   static const _linuxRiscv32 = Abi._(_Architecture.riscv32, _OS.linux);
@@ -199,6 +205,7 @@ const Map<Abi, String> abiNames = {
   Abi.linuxArm: 'linuxArm',
   Abi.linuxArm64: 'linuxArm64',
   Abi.linuxIA32: 'linuxIA32',
+  Abi.linuxLoong64: 'linuxLoong64',
   Abi.linuxX64: 'linuxX64',
   Abi.linuxRiscv32: 'linuxRiscv32',
   Abi.linuxRiscv64: 'linuxRiscv64',
@@ -240,6 +247,7 @@ const Map<Abi, Map<NativeType, int>> nonSizeAlignment = {
   Abi.iosArm64: _wordSize64,
   Abi.iosX64: _wordSize64,
   Abi.linuxArm64: _wordSize64,
+  Abi.linuxLoong64: _wordSize64,
   Abi.linuxX64: _wordSize64,
   Abi.linuxRiscv64: _wordSize64,
   Abi.macosArm64: _wordSize64,

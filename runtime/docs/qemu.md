@@ -24,10 +24,10 @@ $ gdb-multiarch
 ## Running the FFI tests
 
 ```
-$ sudo apt install qemu-user libc6-armhf-cross libc6-arm64-cross libc6-riscv64-cross
+$ sudo apt install qemu-user libc6-armhf-cross libc6-arm64-cross libc6-loong64-cross libc6-riscv64-cross
 $ ./tools/build.py --arch simarm_x64 gen_snapshot
-$ ./tools/build.py --arch arm,arm64,riscv64,simarm64_arm64 runtime runtime_precompiled
-$ ./tools/test.py --arch arm,arm64,riscv64,simarm64_arm64 --use-qemu --compiler dartk,dartkp --gen-snapshot-format elf --timeout 500 ffi
+$ ./tools/build.py --arch arm,arm64,loong64,riscv64,simarm64_arm64 runtime runtime_precompiled
+$ ./tools/test.py --arch arm,arm64,loong64,riscv64,simarm64_arm64 --use-qemu --compiler dartk,dartkp --gen-snapshot-format elf --timeout 500 ffi
 ```
 
 ## Tips
