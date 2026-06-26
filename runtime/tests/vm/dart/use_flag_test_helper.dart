@@ -137,6 +137,8 @@ Future<void> assembleSnapshot(
       ccFlags.add('--target=armv7-linux-gnueabihf');
     } else if (buildDir.endsWith('ARM64')) {
       ccFlags.add('--target=aarch64-linux-gnu');
+    } else if (buildDir.endsWith('LOONG64')) {
+      ccFlags.add('--target=loongarch64-linux-gnu');
     } else if (buildDir.endsWith('X64')) {
       ccFlags.add('--target=x86_64-linux-gnu');
     } else if (buildDir.endsWith('RISCV64')) {

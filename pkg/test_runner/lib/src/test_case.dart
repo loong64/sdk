@@ -287,6 +287,7 @@ class RunningProcess {
                     command.executable.contains("X64") ||
                     command.executable.contains("SIMARM64") ||
                     command.executable.contains("SIMARM64C") ||
+                    command.executable.contains("SIMLOONG64") ||
                     command.executable.contains("SIMRISCV64");
                 var isARM64 = !isX64 && command.executable.contains("ARM64");
                 if (configuration.windowsSdkPath != null) {

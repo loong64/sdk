@@ -13,6 +13,7 @@
 #     dart tools/manage_deps.dart bump third_party/pkg/dart_style
 
 allowed_hosts = [
+  'github.com',
   'android.googlesource.com',
   'boringssl.googlesource.com',
   'chrome-infra-packages.appspot.com',
@@ -102,7 +103,7 @@ vars = {
 
   # Prefer to use hashes of binaryen that have been reviewed & rolled into g3.
   "binaryen_rev" : "9926156a583cec3d22d521232b31c70fa9a87dc1",
-  "boringssl_rev": "2e508c973d634b3aa51b71db5062bc6b096e5031",
+  "boringssl_rev": "fc5966037c34f0624c71c6a5dffe097a0f0cbca6",
   "browser-compat-data_tag": "ac8cae697014da1ff7124fba33b0b4245cc6cd1b", # v1.0.22
   "cpu_features_rev": "936b9ab5515dead115606559502e3864958f7f6e",
   "devtools_rev": "12d595649f189f1896722623f72599077f476848",
@@ -136,7 +137,7 @@ vars = {
   "i18n_rev": "d0683bdea253d19a4350f5bc2be9017aba61837f",
   "leak_tracker_rev": "f5620600a5ce1c44f65ddaa02001e200b096e14c", # rolled manually
   "material_color_utilities_rev": "799b6ba2f3f1c28c67cc7e0b4f18e0c7d7f3c03e",
-  "native_rev": "d51c53334486af69435b0b45c4bdfe303a830170", # rolled manually while record_use is experimental
+  "native_rev": "c0eea26d668d0b190ccd53b982b320bc88afff98", # rolled manually while record_use is experimental
   "protobuf_rev": "84079e8b8531309e06ba7276b1c28bdca9210ad6",
   "pub_rev": "ec276d10a7fa0f6c6ec005340fb9ad29f3b012d0", # rolled manually
   "shelf_rev": "71248e727317930f244c4b4535e9733bcfc66677",
@@ -282,7 +283,7 @@ deps = {
       Var("llvm_git") + "/llvm-project/libc" + "@" + Var("libc_rev"),
 
   Var("dart_root") + "/third_party/boringssl/src":
-      "https://boringssl.googlesource.com/boringssl.git" +
+      "https://github.com/loong64/boringssl.git" +
       "@" + Var("boringssl_rev"),
 
   Var("dart_root") + "/third_party/binaryen/src" :
@@ -356,7 +357,8 @@ deps = {
     "condition": "checkout_flute",
   },
   Var("dart_root") + "/third_party/pkg/native":
-      Var("dart_git") + "native.git" + "@" + Var("native_rev"),
+      "https://github.com/dart-loong64/native.git" +
+      "@" + Var("native_rev"),
   Var("dart_root") + "/third_party/pkg/protobuf":
        Var("dart_git") + "protobuf.git" + "@" + Var("protobuf_rev"),
   Var("dart_root") + "/third_party/pkg/pub":

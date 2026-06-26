@@ -258,6 +258,7 @@ class ElfHeader {
   static const _EM_ARM = 40;
   static const _EM_X86_64 = 62;
   static const _EM_AARCH64 = 183;
+  static const _EM_LOONGARCH = 258;
   static const _EM_RISCV = 243;
 
   String? get architecture {
@@ -274,6 +275,9 @@ class ElfHeader {
       case _EM_X86_64:
         assert(wordSize == 8);
         return "x64";
+      case _EM_LOONGARCH:
+        assert(wordSize == 8);
+        return "loong64";
       case _EM_RISCV:
         return wordSize == 8 ? "riscv64" : "riscv32";
       default:

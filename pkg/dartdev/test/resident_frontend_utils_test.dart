@@ -130,6 +130,14 @@ void main() {
       );
 
       test(
+        'returns true when passed a file that starts with the AOT magic number for loong64 COFF files',
+        () async {
+          testExecutableFile.writeAsBytesSync([0x62, 0x64, 1, 2, 3]);
+          expect(await isFileAotSnapshot(testExecutableFile), true);
+        },
+      );
+
+      test(
         'returns true when passed a file that starts with the AOT magic number for riscv32 COFF files',
         () async {
           testExecutableFile.writeAsBytesSync([0x50, 0x32, 1, 2, 3]);
