@@ -39,6 +39,9 @@ function parse_target_arch() {
   *IA32)
   echo "IA32"
   ;;
+  *LOONG64)
+  echo "LOONG64"
+  ;;
   *RISCV32)
   echo "RISCV32"
   ;;
