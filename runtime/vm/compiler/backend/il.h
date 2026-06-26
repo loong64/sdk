@@ -5250,7 +5250,7 @@ class TestIntInstr : public TemplateCondition<2, NoThrow, Pure> {
     switch (representation) {
       case kTagged:
 #if defined(TARGET_ARCH_X64) || defined(TARGET_ARCH_ARM64) ||                  \
-    defined(TARGET_ARCH_RISCV64)
+    defined(TARGET_ARCH_LOONG64) || defined(TARGET_ARCH_RISCV64)
       case kUnboxedInt64:
 #endif
         return true;

@@ -417,8 +417,8 @@ if (!using_sanitizer && current_os == "linux" &&
     if (is_clang) {
       sanitizers += [ "msan" ]
     }
-  } else if (current_cpu == "riscv64") {
-    # Fuchsia Clang is missing the riscv64 MSAN runtime.
+  } else if (current_cpu == "riscv64" || current_cpu == "loong64") {
+    # Fuchsia Clang is missing the loong64/riscv64 MSAN runtime.
     sanitizers += [
       "asan",
       "tsan",
@@ -930,6 +930,7 @@ group("create_full_sdk") {
     public_deps += [
       "../runtime/bin:gen_snapshot_product_linux_arm",
       "../runtime/bin:gen_snapshot_product_linux_arm64",
+      "../runtime/bin:gen_snapshot_product_linux_loong64",
       "../runtime/bin:gen_snapshot_product_linux_riscv64",
       "../runtime/bin:gen_snapshot_product_linux_x64",
     ]

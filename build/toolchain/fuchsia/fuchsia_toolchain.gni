@@ -16,6 +16,8 @@ template("fuchsia_toolchain") {
         target_triple = "x86_64-unknown-fuchsia"
       } else if (target_cpu == "arm64") {
         target_triple = "aarch64-unknown-fuchsia"
+      } else if (target_cpu == "loong64") {
+        target_triple = "loongarch64-unknown-fuchsia"
       } else if (target_cpu == "riscv64") {
         target_triple = "riscv64-unknown-fuchsia"
       } else {
@@ -61,6 +63,8 @@ template("fuchsia_toolchain") {
       target_triple_flags = "--target=x86_64-fuchsia"
     } else if (target_cpu == "arm64") {
       target_triple_flags = "--target=aarch64-fuchsia"
+    } else if (target_cpu == "loong64") {
+      target_triple_flags = "--target=loongarch64-fuchsia"
     } else if (target_cpu == "riscv64") {
       target_triple_flags = "--target=riscv64-fuchsia"
     } else {

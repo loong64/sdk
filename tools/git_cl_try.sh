@@ -55,6 +55,7 @@ function git-cl-try-vm-precomp {
      -b vm-kernel-precomp-android-release-arm_x64-try        \
      -b vm-kernel-precomp-dwarf-linux-product-x64-try        \
      -b vm-kernel-precomp-linux-debug-simarm_x64-try         \
+     -b vm-kernel-precomp-linux-debug-simloong64-try         \
      -b vm-kernel-precomp-linux-debug-simriscv64-try         \
      -b vm-kernel-precomp-linux-debug-x64-try                \
      -b vm-kernel-precomp-linux-debug-x64c-try               \
