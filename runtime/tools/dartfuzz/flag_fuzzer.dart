@@ -13,11 +13,13 @@ final buildDirs = [
   "out/ReleaseX64C",
   "out/ReleaseSIMARM64",
   "out/ReleaseSIMARM64C",
+  "out/ReleaseSIMLOONG64",
   "out/ReleaseSIMRISCV64",
   "out/DebugX64",
   "out/DebugX64C",
   "out/DebugSIMARM64",
   "out/DebugSIMARM64C",
+  "out/DebugSIMLOONG64",
   "out/DebugSIMRISCV64",
 ];
 

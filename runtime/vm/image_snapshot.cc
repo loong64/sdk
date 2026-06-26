@@ -1036,8 +1036,8 @@ intptr_t ImageWriter::AlignWithBreakInstructions(intptr_t alignment,
   // All instructions are 4 bytes long on ARM architectures, so on 32-bit ARM
   // there won't be any padding.
   ASSERT_EQUAL(remaining, 0);
-#elif defined(TARGET_ARCH_ARM64)
-  // All instructions are 4 bytes long on ARM architectures, so on 64-bit ARM
+#elif defined(TARGET_ARCH_ARM64) || defined(TARGET_ARCH_LOONG64)
+  // All instructions are 4 bytes long on ARM/LOONG64 architectures, so on 64-bit
   // there is only 0 or 4 bytes of padding.
   if (remaining != 0) {
     ASSERT_EQUAL(remaining, 4);
@@ -1820,6 +1820,12 @@ void AssemblyImageWriter::FrameUnwindPrologue() {
   assembly_stream_->WriteString(".save {r11, lr}\n");
   assembly_stream_->WriteString(".setfp r11, sp, #0\n");
 #endif
+#elif defined(TARGET_ARCH_LOONG64)
+  COMPILE_ASSERT(FP == 22);
+  COMPILE_ASSERT(LINK_REGISTER == 1);
+  assembly_stream_->WriteString(".cfi_def_cfa 22, 0\n");
+  assembly_stream_->WriteString(".cfi_offset 1, -8\n");
+  assembly_stream_->WriteString(".cfi_offset 22, -16\n");
 #elif defined(TARGET_ARCH_RISCV32)
   assembly_stream_->WriteString(".cfi_def_cfa fp, 0\n");
   assembly_stream_->WriteString(".cfi_offset ra, -4\n");

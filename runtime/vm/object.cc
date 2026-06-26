@@ -27982,7 +27982,7 @@ EntryPointPragma FindEntryPointPragma(IsolateGroup* IG,
 intptr_t Function::MaxNumberOfParametersInRegisters(Zone* zone) const {
 #if defined(TARGET_ARCH_X64) || defined(TARGET_ARCH_ARM64) ||                  \
     defined(TARGET_ARCH_ARM) || defined(TARGET_ARCH_RISCV32) ||                \
-    defined(TARGET_ARCH_RISCV64)
+    defined(TARGET_ARCH_RISCV64) || defined(TARGET_ARCH_LOONG64)
   if (!FLAG_precompiled_mode) {
     return 0;
   }

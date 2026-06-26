@@ -41,6 +41,7 @@ FILE_HEADER_MAGICS = {
     'x64': 0x8664,
     'arm': 0x1c0,
     'arm64': 0xaa64,
+    'loong64': 0x6264,
     'riscv32': 0x5032,
     'riscv64': 0x5064,
 }
@@ -129,7 +130,7 @@ def main():
         '--executable', dest='executable', action='store_true', default=False)
 
     args = parser.parse_args()
-    use_64_bit = args.arch in ['x64', 'arm64', 'riscv64']
+    use_64_bit = args.arch in ['x64', 'arm64', 'loong64', 'riscv64']
 
     with open(args.input, 'rb') as f:
         section_data = f.read()

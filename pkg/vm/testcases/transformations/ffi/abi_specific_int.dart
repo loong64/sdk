@@ -19,6 +19,7 @@ import 'dart:ffi';
   Abi.linuxArm: Uint32(),
   Abi.linuxArm64: Uint32(),
   Abi.linuxIA32: Int32(),
+  Abi.linuxLoong64: Int32(),
   Abi.linuxX64: Int32(),
   Abi.linuxRiscv32: Int32(),
   Abi.linuxRiscv64: Int32(),

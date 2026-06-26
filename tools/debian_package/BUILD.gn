@@ -17,6 +17,9 @@ if (is_linux) {
     } else if (target_cpu == "arm64") {
       debian_arch = "arm64"
       lib_dir = "//buildtools/sysroot/linux/lib/aarch64-linux-gnu"
+    } else if (target_cpu == "loong64") {
+      debian_arch = "loong64"
+      lib_dir = "//buildtools/sysroot/linux/lib/loongarch64-linux-gnu"
     } else if (target_cpu == "riscv64") {
       debian_arch = "riscv64"
       lib_dir = "//buildtools/sysroot/focal/lib/riscv64-linux-gnu/"

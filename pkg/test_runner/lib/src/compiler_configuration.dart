@@ -83,6 +83,7 @@ abstract class CompilerConfiguration {
         if (configuration.architecture == Architecture.simarm ||
             configuration.architecture == Architecture.simarm64 ||
             configuration.architecture == Architecture.simarm64c ||
+            configuration.architecture == Architecture.simloong64 ||
             configuration.architecture == Architecture.simriscv32 ||
             configuration.architecture == Architecture.simriscv64 ||
             configuration.system == System.android ||
@@ -821,6 +822,11 @@ class PrecompilerCompilerConfiguration extends CompilerConfiguration
 
   bool get _isIA32 => _configuration.architecture == Architecture.ia32;
 
+  bool get _isLoong64 => _configuration.architecture == Architecture.loong64;
+
+  bool get _isSimLoong64 =>
+      _configuration.architecture == Architecture.simloong64;
+
   bool get _isRiscv32 => _configuration.architecture == Architecture.riscv32;
 
   bool get _isSimRiscv32 =>
@@ -943,6 +949,8 @@ class PrecompilerCompilerConfiguration extends CompilerConfiguration
         exec = "$simBuildDir/gen_snapshot";
       } else if (_isArm64 && _configuration.useQemu) {
         exec = "$buildDir/$clang64/gen_snapshot";
+      } else if (_isLoong64 && _configuration.useQemu) {
+        exec = "$buildDir/$clang64/gen_snapshot";
       } else if (_isRiscv32 && _configuration.useQemu) {
         exec = "$buildDir/$gcc32/gen_snapshot";
       } else if (_isRiscv64 && _configuration.useQemu) {
@@ -1043,6 +1051,8 @@ class PrecompilerCompilerConfiguration extends CompilerConfiguration
         cc = 'arm-linux-gnueabihf-gcc';
       } else if (_isSimArm64 || (_isArm64 && _configuration.useQemu)) {
         cc = 'aarch64-linux-gnu-gcc';
+      } else if (_isSimLoong64 || (_isLoong64 && _configuration.useQemu)) {
+        cc = 'loongarch64-linux-gnu-gcc';
       } else if (_isSimRiscv32 || (_isRiscv32 && _configuration.useQemu)) {
         cc = 'riscv32-linux-gnu-gcc';
       } else if (_isSimRiscv64 || (_isRiscv64 && _configuration.useQemu)) {
@@ -1078,6 +1088,10 @@ class PrecompilerCompilerConfiguration extends CompilerConfiguration
         case Architecture.simarm64:
         case Architecture.simarm64c:
           target = ['-arch', 'arm64'];
+          break;
+        case Architecture.loong64:
+        case Architecture.simloong64:
+          target = ['-arch', 'loongarch64'];
           break;
         case Architecture.riscv32:
         case Architecture.simriscv32:

@@ -455,6 +455,7 @@ class OptionsParser {
           "simarm",
           "simarm64",
           "simarm64c",
+          "simloong64",
           "simriscv32",
           "simriscv64"
         ];
