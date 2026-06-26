@@ -80,10 +80,12 @@ ARCH_FAMILY = {
     'x64c': 'ia32',
     'arm64c': 'arm',
     'simarm64c': 'ia32',
+    'simloong64': 'ia32',
     'simriscv32': 'ia32',
     'simriscv64': 'ia32',
     'simx64': 'arm',
     'simx64c': 'arm',
+    'loong64': 'loongarch',
     'riscv32': 'riscv',
     'riscv64': 'riscv',
 }
@@ -283,6 +285,8 @@ def HostArchitectures():
         return ['arm']
     if m in ['i386', 'i686', 'ia32', 'x86']:
         return ['x86', 'ia32']
+    if m in ['loongarch64', 'loong64']:
+        return ['loong64']
     if m in ['x64', 'x86-64', 'x86_64', 'amd64', 'AMD64']:
         return ['x64', 'x86', 'ia32']
     if m in ['riscv64']:

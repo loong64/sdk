@@ -422,6 +422,7 @@ class FfiTestSuite extends TestSuite {
     "ia32_android",
     "ia32_linux",
     "ia32_win",
+    "loong64_linux",
     "x64_fuchsia",
     "x64_ios",
     "x64_linux",

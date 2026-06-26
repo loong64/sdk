@@ -693,7 +693,7 @@ ISOLATE_UNIT_TEST_CASE(Service_EmbedderIsolateHandler) {
 }
 
 // TODO(zra): Remove when tests are ready to enable.
-#if !defined(TARGET_ARCH_ARM64)
+#if !defined(TARGET_ARCH_ARM64) && !defined(TARGET_ARCH_LOONG64)
 
 ISOLATE_UNIT_TEST_CASE(Service_Profile) {
   Dart_StartProfiling();
@@ -737,7 +737,7 @@ ISOLATE_UNIT_TEST_CASE(Service_Profile) {
   EXPECT_SUBSTRING("\"type\":\"CpuSamples\"", handler.msg());
 }
 
-#endif  // !defined(TARGET_ARCH_ARM64)
+#endif  // !defined(TARGET_ARCH_ARM64) && !defined(TARGET_ARCH_LOONG64)
 
 ISOLATE_UNIT_TEST_CASE(Service_ParseJSONArray) {
   {

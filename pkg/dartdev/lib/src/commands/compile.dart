@@ -497,6 +497,7 @@ class CompileNativeCommand extends CompileSubcommandCommand {
   static final supportedTargetPlatforms = <Target>{
     Target.linuxArm,
     Target.linuxArm64,
+    Target.linuxLoong64,
     Target.linuxRiscv64,
     Target.linuxX64,
   };
@@ -612,7 +613,7 @@ Remove debugging information from the output and save it separately to the speci
     final v = Platform.version;
     if (v.contains('"linux_x64"') || v.contains('"linux_arm64"')) {
       return ['none', 'asan', 'msan', 'tsan'];
-    } else if (v.contains('"linux_riscv64"')) {
+    } else if (v.contains('"linux_riscv64"') || v.contains('"linux_loong64"')) {
       return ['none', 'asan', 'tsan'];
     }
     return ['none'];

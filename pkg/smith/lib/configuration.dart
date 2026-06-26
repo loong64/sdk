@@ -733,6 +733,8 @@ enum Architecture {
   // ignore: constant_identifier_names
   simarm64_arm64._('simarm64_arm64', isSimulator: true),
   simarm64c._('simarm64c', isSimulator: true),
+  loong64._('loong64'),
+  simloong64._('simloong64', isSimulator: true);
   riscv32._('riscv32'),
   riscv64._('riscv64'),
   simriscv32._('simriscv32', isSimulator: true),
@@ -797,6 +799,9 @@ enum Architecture {
       case "arm64e":
       case "ARM64":
         return arm64;
+      case "loongarch64":
+      case "loong64":
+        return loong64;
       case "riscv32":
         return riscv32;
       case "riscv64":

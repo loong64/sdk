@@ -119,6 +119,13 @@ build_libdart_builtin("libdart_builtin_product_linux_arm") {
   ]
 }
 
+build_libdart_builtin("libdart_builtin_product_linux_loong64") {
+  extra_configs = [
+    "..:dart_product_config",
+    "..:dart_linux_loong64_config",
+  ]
+}
+
 build_libdart_builtin("libdart_builtin_product_linux_riscv64") {
   extra_configs = [
     "..:dart_product_config",
@@ -397,6 +404,19 @@ build_gen_snapshot("gen_snapshot_product_linux_arm") {
   ]
 }
 
+build_gen_snapshot("gen_snapshot_product_linux_loong64") {
+  extra_configs = [
+    "..:dart_product_config",
+    "..:dart_linux_loong64_config",
+  ]
+  extra_deps = [
+    ":gen_snapshot_dart_io_product_linux_loong64",
+    ":libdart_builtin_product_linux_loong64",
+    "..:libdart_precompiler_product_linux_loong64",
+    "../platform:libdart_platform_precompiler_product_linux_loong64",
+  ]
+}
+
 build_gen_snapshot("gen_snapshot_product_linux_riscv64") {
   extra_configs = [
     "..:dart_product_config",
@@ -515,6 +535,13 @@ build_gen_snapshot_dart_io("gen_snapshot_dart_io_product_linux_arm") {
   extra_configs = [
     "..:dart_product_config",
     "..:dart_linux_arm_config",
+  ]
+}
+
+build_gen_snapshot_dart_io("gen_snapshot_dart_io_product_linux_loong64") {
+  extra_configs = [
+    "..:dart_product_config",
+    "..:dart_linux_loong64_config",
   ]
 }
 

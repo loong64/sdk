@@ -36,6 +36,8 @@ struct RelocatorTestHelper {
   static constexpr intptr_t kOffsetOfCall = 4;
 #elif defined(TARGET_ARCH_RISCV64)
   static constexpr intptr_t kOffsetOfCall = 4;
+#elif defined(TARGET_ARCH_LOONG64)
+  static constexpr intptr_t kOffsetOfCall = 4;
 #else
   static constexpr intptr_t kOffsetOfCall = 0;
 #endif
@@ -86,6 +88,8 @@ struct RelocatorTestHelper {
                                    compiler::Address::PairPreIndex)));
 #elif defined(TARGET_ARCH_ARM)
       SPILLS_RETURN_ADDRESS_FROM_LR_TO_REGISTER(__ PushList((1 << LR)));
+#elif defined(TARGET_ARCH_LOONG64)
+          __ PushRegister(RA);
 #elif defined(TARGET_ARCH_RISCV32) || defined(TARGET_ARCH_RISCV64)
           __ PushRegister(RA);
 #endif
@@ -98,6 +102,8 @@ struct RelocatorTestHelper {
                                    compiler::Address::PairPostIndex)));
 #elif defined(TARGET_ARCH_ARM)
       RESTORES_RETURN_ADDRESS_FROM_REGISTER_TO_LR(__ PopList((1 << LR)));
+#elif defined(TARGET_ARCH_LOONG64)
+          __ PopRegister(RA);
 #elif defined(TARGET_ARCH_RISCV32) || defined(TARGET_ARCH_RISCV64)
           __ PopRegister(RA);
 #endif
@@ -112,6 +118,8 @@ struct RelocatorTestHelper {
       __ LoadImmediate(RAX, 42);
 #elif defined(TARGET_ARCH_ARM) || defined(TARGET_ARCH_ARM64)
       __ LoadImmediate(R0, 42);
+#elif defined(TARGET_ARCH_LOONG64)
+          __ LoadImmediate(A0, 42);
 #elif defined(TARGET_ARCH_RISCV32) || defined(TARGET_ARCH_RISCV64)
           __ LoadImmediate(A0, 42);
 #endif
@@ -200,7 +208,7 @@ struct RelocatorTestHelper {
     EXPECT_EQ(42, reinterpret_cast<Fun>(entrypoint)());
 #elif defined(TARGET_ARCH_ARM) || defined(TARGET_ARCH_RISCV32)
     EXPECT_EQ(42, EXECUTE_TEST_CODE_INT32(Fun, entrypoint));
-#elif defined(TARGET_ARCH_ARM64) || defined(TARGET_ARCH_RISCV64)
+#elif defined(TARGET_ARCH_ARM64) || defined(TARGET_ARCH_RISCV64) || defined(TARGET_ARCH_LOONG64)
     EXPECT_EQ(42, EXECUTE_TEST_CODE_INT64(Fun, entrypoint));
 #endif
   }

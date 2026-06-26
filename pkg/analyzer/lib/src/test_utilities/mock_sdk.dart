@@ -1014,6 +1014,7 @@ final class Double implements _NativeDouble {
   Abi.linuxArm: Int32(),
   Abi.linuxArm64: Int64(),
   Abi.linuxIA32: Int32(),
+  Abi.linuxLoong64: Int64(),
   Abi.linuxX64: Int64(),
   Abi.linuxRiscv32: Int32(),
   Abi.linuxRiscv64: Int64(),

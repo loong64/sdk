@@ -29,6 +29,9 @@ if (is_linux) {
     } else if (current_cpu == "arm64") {
       target_sysroot = rebase_path("//buildtools/sysroot/alpine-linux-aarch64",
                                    root_build_dir)
+    } else if (current_cpu == "loong64") {
+      target_sysroot = rebase_path("//buildtools/sysroot/alpine-linux-loongarch64",
+                                   root_build_dir)
     } else if (current_cpu == "riscv64") {
       target_sysroot = rebase_path("//buildtools/sysroot/alpine-linux-riscv64",
                                    root_build_dir)
