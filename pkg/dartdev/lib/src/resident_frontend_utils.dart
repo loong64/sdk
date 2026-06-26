@@ -95,6 +95,7 @@ Future<bool> isFileAotSnapshot(File file) async {
   }
   if (bytes[0] == 0x01 && bytes[1] == 0xc0 || // arm32
       bytes[0] == 0xaa && bytes[1] == 0x64 || // arm64
+      bytes[0] == 0x62 && bytes[1] == 0x64 || // loong64
       bytes[0] == 0x50 && bytes[1] == 0x32 || // riscv32
       bytes[0] == 0x50 && bytes[1] == 0x64 /* riscv64 */ ) {
     return true;

@@ -252,6 +252,7 @@ Future<List<T>> forAllConfigurationsMode<T>(
     'simarm64',
     'x64c',
     'simarm64c',
+    'simloong64',
     'simriscv32',
     'simriscv64',
   ];

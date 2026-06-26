@@ -75,7 +75,7 @@ enum Sanitizer {
     final v = Platform.version;
     if (v.contains('"linux_x64"') || v.contains('"linux_arm64"')) {
       return [none, asan, msan, tsan];
-    } else if (v.contains('"linux_riscv64"')) {
+    } else if (v.contains('"linux_riscv64"') || v.contains('"linux_loong64"')) {
       return [none, asan, tsan];
     }
     return [none];
@@ -1171,6 +1171,7 @@ For example: dart compile $name --packages=/tmp/pkgs.json main.dart''',
   static final supportedTargetPlatforms = <Target>{
     Target.linuxArm,
     Target.linuxArm64,
+    Target.linuxLoong64,
     Target.linuxRiscv64,
     Target.linuxX64,
   };
