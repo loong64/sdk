@@ -291,6 +291,7 @@ class DartUtils {
     kAotPEMagicNumber,
     kAotCoffARM32MagicNumber,
     kAotCoffARM64MagicNumber,
+    kAotCoffLOONG64MagicNumber,
     kAotCoffRISCV32MagicNumber,
     kAotCoffRISCV64MagicNumber,
     kUnknownMagicNumber
@@ -314,6 +315,7 @@ class DartUtils {
     }
     if (number == DartUtils::kAotMachO64MagicNumber ||
         number == DartUtils::kAotCoffARM64MagicNumber ||
+        number == DartUtils::kAotCoffLOONG64MagicNumber ||
         number == DartUtils::kAotCoffRISCV64MagicNumber) {
       return 64;
     }

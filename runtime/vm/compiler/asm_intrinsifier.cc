@@ -9,6 +9,7 @@
 namespace dart {
 namespace compiler {
 
+#if !defined(TARGET_ARCH_LOONG64)
 void AsmIntrinsifier::String_identityHash(Assembler* assembler,
                                           Label* normal_ir_body) {
   String_getHashCode(assembler, normal_ir_body);
@@ -59,6 +60,7 @@ void AsmIntrinsifier::StringEquality(Assembler* assembler,
 
   __ Bind(normal_ir_body);
 }
+#endif  // !defined(TARGET_ARCH_LOONG64)
 
 }  // namespace compiler
 }  // namespace dart

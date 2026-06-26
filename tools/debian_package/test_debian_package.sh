@@ -15,6 +15,7 @@ if [ ! -f $debfile ]; then
   case $arch in
     x64) debfile="out/ReleaseX64/dart_${version}-1_amd64.deb" ;;
     arm64) debfile="out/ReleaseARM64/dart_${version}-1_arm64.deb" ;;
+    loong64) debfile="out/ReleaseLoong64/dart_${version}-1_loong64.deb" ;;
     riscv64) debfile="out/ReleaseRISCV64/dart_${version}-1_riscv64.deb" ;;
   esac
 fi

@@ -16,6 +16,7 @@ If you are running Debian/Ubuntu, you can obtain a cross-compiler by doing the f
 $ sudo apt-get install g++-x86-64-linux-gnu     # To target x64
 $ sudo apt-get install g++-arm-linux-gnueabihf  # To target arm
 $ sudo apt-get install g++-aarch64-linux-gnu    # To target arm64
+$ sudo apt-get install g++-loongarch64-linux-gnu # To target loong64
 $ sudo apt-get install g++-riscv64-linux-gnu    # To target riscv64
 ```
 
@@ -32,6 +33,7 @@ With the default Debian/Ubuntu toolchains, simply do:
 ```bash
 $ ./tools/build.py --no-clang --mode release --arch arm create_sdk
 $ ./tools/build.py --no-clang --mode release --arch arm64 create_sdk
+$ ./tools/build.py --no-clang --mode release --arch loong64 create_sdk
 $ ./tools/build.py --no-clang --mode release --arch riscv64 create_sdk
 ```
 
@@ -42,6 +44,7 @@ You can use a different toolchain using the -t switch. For example, if the path 
 ```bash
 $ ./tools/build.py --no-clang -m release -a arm -t arm=/path/to/toolchain/prefix create_sdk
 $ ./tools/build.py --no-clang -m release -a arm64 -t arm64=/path/to/toolchain/prefix create_sdk
+$ ./tools/build.py --no-clang -m release -a loong64 -t loong64=/path/to/toolchain/prefix create_sdk
 $ ./tools/build.py --no-clang -m release -a riscv32 -t riscv32=/path/to/toolchain/prefix create_sdk
 $ ./tools/build.py --no-clang -m release -a riscv64 -t riscv64=/path/to/toolchain/prefix create_sdk
 ```
@@ -61,7 +64,7 @@ $ ./tools/build.py --mode=release --arch=riscv64 --os=android create_sdk
 You can create Debian packages targeting ARM or RISC-V as follows:
 
 ```
-$ ./tools/build.py --mode=release --arch=arm,arm64,riscv64 debian_package
+$ ./tools/build.py --mode=release --arch=arm,arm64,loong64,riscv64 debian_package
 ```
 
 # Testing
@@ -69,7 +72,7 @@ $ ./tools/build.py --mode=release --arch=arm,arm64,riscv64 debian_package
 In addition to cross-compiling the Dart SDK, tests can be run even without the corresponding hardware by using QEMU.
 
 ```bash
-$ sudo apt install qemu-user libc6-armhf-cross libc6-arm64-cross libc6-riscv64-cross
-$ ./tools/build.py --mode release --arch arm,arm64,riscv64 runtime
-$ ./tools/test.py --mode release --arch arm,arm64,riscv64 --use-qemu lib
+$ sudo apt install qemu-user libc6-armhf-cross libc6-arm64-cross libc6-loong64-cross libc6-riscv64-cross
+$ ./tools/build.py --mode release --arch arm,arm64,loong64,riscv64 runtime
+$ ./tools/test.py --mode release --arch arm,arm64,loong64,riscv64 --use-qemu lib
 ```

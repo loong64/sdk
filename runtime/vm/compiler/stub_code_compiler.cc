@@ -1461,8 +1461,8 @@ void StubCodeCompiler::GenerateAllocateRecordStub() {
     // Initialize the remaining words of the object.
     {
       const Register field_reg = shape_reg;
-#if defined(TARGET_ARCH_ARM64) || defined(TARGET_ARCH_RISCV32) ||              \
-    defined(TARGET_ARCH_RISCV64)
+#if defined(TARGET_ARCH_ARM64) || defined(TARGET_ARCH_LOONG64) ||              \
+    defined(TARGET_ARCH_RISCV32) || defined(TARGET_ARCH_RISCV64)
       const Register null_reg = NULL_REG;
 #else
       const Register null_reg = temp_reg;
@@ -1819,22 +1819,22 @@ void StubCodeCompiler::GenerateBoxDoubleStub() {
 }
 
 void StubCodeCompiler::GenerateBoxFloat32x4Stub() {
-#if !defined(TARGET_ARCH_RISCV32) && !defined(TARGET_ARCH_RISCV64)
+#if !defined(TARGET_ARCH_RISCV32) && !defined(TARGET_ARCH_RISCV64) && !defined(TARGET_ARCH_LOONG64)
   GenerateBoxFpuValueStub(assembler, compiler::Float32x4Class(),
                           kBoxFloat32x4RuntimeEntry,
                           &Assembler::StoreUnboxedSimd128);
 #else
-  __ Stop("Not supported on RISC-V.");
+  __ Stop("Not supported on LoongArch / RISC-V.");
 #endif
 }
 
 void StubCodeCompiler::GenerateBoxFloat64x2Stub() {
-#if !defined(TARGET_ARCH_RISCV32) && !defined(TARGET_ARCH_RISCV64)
+#if !defined(TARGET_ARCH_RISCV32) && !defined(TARGET_ARCH_RISCV64) && !defined(TARGET_ARCH_LOONG64)
   GenerateBoxFpuValueStub(assembler, compiler::Float64x2Class(),
                           kBoxFloat64x2RuntimeEntry,
                           &Assembler::StoreUnboxedSimd128);
 #else
-  __ Stop("Not supported on RISC-V.");
+  __ Stop("Not supported on LoongArch / RISC-V.");
 #endif
 }
 
@@ -2054,8 +2054,8 @@ void StubCodeCompiler::GenerateSuspendStub(
       kFunctionData);
 
   {
-#if defined(TARGET_ARCH_ARM64) || defined(TARGET_ARCH_RISCV32) ||              \
-    defined(TARGET_ARCH_RISCV64)
+#if defined(TARGET_ARCH_ARM64) || defined(TARGET_ARCH_LOONG64) ||              \
+    defined(TARGET_ARCH_RISCV32) || defined(TARGET_ARCH_RISCV64)
     const Register kNullReg = NULL_REG;
 #else
     const Register kNullReg = kTemp;

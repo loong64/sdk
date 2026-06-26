@@ -109,7 +109,12 @@ library_for_all_configs("libdart_vm") {
     sources += [ "thread_interrupter_android_arm.S" ]
   }
   if (!is_win) {
-    sources += [ "ffi_trampolines_arm64.S" ]
+    if (target_cpu == "arm64") {
+      sources += [ "ffi_trampolines_arm64.S" ]
+    } 
+    if (target_cpu == "loong64") {
+      sources += [ "ffi_trampolines_loong64.S" ]
+    }
   }
   include_dirs = [
     "..",

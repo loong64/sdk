@@ -222,6 +222,16 @@ static uword* LoadStackSlot(uword* ptr) {
 // +-------------+
 static constexpr intptr_t kHostSavedCallerPcSlotFromFp = 1;
 static constexpr intptr_t kHostSavedCallerFpSlotFromFp = 0;
+#elif defined(HOST_ARCH_LOONG64)
+// +-------------+
+// |             | <- FP
+// +-------------+
+// | saved RA    |
+// +-------------+
+// | saved FP    |
+// +-------------+
+static constexpr intptr_t kHostSavedCallerPcSlotFromFp = -1;
+static constexpr intptr_t kHostSavedCallerFpSlotFromFp = -2;
 #elif defined(HOST_ARCH_RISCV32) || defined(HOST_ARCH_RISCV64)
 // +-------------+
 // |             | <- FP
@@ -987,7 +997,8 @@ bool ReturnAddressLocator::LocateReturnAddress(uword* return_address) {
   return false;
 }
 #elif defined(TARGET_ARCH_ARM) || defined(TARGET_ARCH_ARM64) ||                \
-    defined(TARGET_ARCH_RISCV32) || defined(TARGET_ARCH_RISCV64)
+    defined(TARGET_ARCH_RISCV32) || defined(TARGET_ARCH_RISCV64) ||     \
+    defined(TARGET_ARCH_LOONG64)
 bool ReturnAddressLocator::LocateReturnAddress(uword* return_address) {
   ASSERT(return_address != nullptr);
   return false;
@@ -2157,3 +2168,4 @@ void SampleBlockProcessor::ThreadMain(uword parameters) {
 #endif  // defined(DART_INCLUDE_PROFILER)
 
 }  // namespace dart
+

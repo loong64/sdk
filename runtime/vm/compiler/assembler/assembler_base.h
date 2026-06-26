@@ -21,7 +21,8 @@
 namespace dart {
 
 #if defined(TARGET_ARCH_ARM) || defined(TARGET_ARCH_ARM64) ||                  \
-    defined(TARGET_ARCH_RISCV32) || defined(TARGET_ARCH_RISCV64)
+    defined(TARGET_ARCH_RISCV32) || defined(TARGET_ARCH_RISCV64) ||                \
+    defined(TARGET_ARCH_LOONG64)
 DECLARE_FLAG(bool, use_far_branches);
 #endif
 
@@ -210,6 +211,7 @@ constexpr OperandSize kWordBytes = kFourBytes;
 
 // Forward declarations.
 class Assembler;
+class MicroAssembler;
 class AssemblerFixup;
 class AssemblerBuffer;
 class Address;
@@ -381,6 +383,7 @@ class Label : public ZoneObject {
   }
 
   friend class Assembler;
+  friend class compiler::MicroAssembler;
   DISALLOW_COPY_AND_ASSIGN(Label);
 };
 #endif

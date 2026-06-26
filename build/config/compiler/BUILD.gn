@@ -327,6 +327,10 @@ config("compiler") {
         } else if (current_cpu == "riscv32") {
           cflags += [ "--target=riscv32-alpine-linux-musl" ]
           ldflags += [ "--target=riscv32-alpine-linux-musl" ]
+        } else if (current_cpu == "loong64") {
+          cflags += [ "--target=loongarch64-alpine-linux-musl" ]
+          cflags += [ "-fno-stack-protector" ]
+          ldflags += [ "--target=loongarch64-alpine-linux-musl" ]
         } else if (current_cpu == "riscv64") {
           cflags += [ "--target=riscv64-alpine-linux-musl" ]
           ldflags += [ "--target=riscv64-alpine-linux-musl" ]
@@ -344,6 +348,9 @@ config("compiler") {
         } else if (current_cpu == "arm64") {
           cflags += [ "--target=aarch64-linux-gnu" ]
           ldflags += [ "--target=aarch64-linux-gnu" ]
+        } else if (current_cpu == "loong64") {
+          cflags += [ "--target=loongarch64-linux-gnu" ]
+          ldflags += [ "--target=loongarch64-linux-gnu" ]
         } else if (current_cpu == "riscv32") {
           cflags += [ "--target=riscv32-linux-gnu" ]
           ldflags += [ "--target=riscv32-linux-gnu" ]

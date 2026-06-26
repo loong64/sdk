@@ -178,7 +178,7 @@ std::atomic<uword> DartInitializationState::state_ = {
 
 #if defined(DART_PRECOMPILER) || defined(DART_PRECOMPILED_RUNTIME)
 static void CheckOffsets() {
-#if !defined(IS_SIMARM_HOST64)
+#if !defined(IS_SIMARM_HOST64) && !(defined(DART_INCLUDE_SIMULATOR) && defined(TARGET_ARCH_LOONG64))
   // These offsets are embedded in precompiled instructions. We need the
   // compiler and the runtime to agree.
   bool ok = true;
@@ -964,6 +964,8 @@ char* Dart::FeaturesString(IsolateGroup* isolate_group, Snapshot::Kind kind) {
     buffer.AddString(" riscv32");
 #elif defined(TARGET_ARCH_RISCV64)
     buffer.AddString(" riscv64");
+#elif defined(TARGET_ARCH_LOONG64)
+    buffer.AddString(" loong64");
 #else
 #error What architecture?
 #endif
@@ -1025,3 +1027,7 @@ int64_t Dart::UptimeMicros() {
 }
 
 }  // namespace dart
+
+
+
+
