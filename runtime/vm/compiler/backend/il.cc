@@ -7450,6 +7450,9 @@ static void EmitSanCall(FlowGraphCompiler* compiler,
   ASSERT(IsCalleeSavedRegister(NULL_REG));
   ASSERT(IsCalleeSavedRegister(HEAP_BITS));
   ASSERT(IsCalleeSavedRegister(DISPATCH_TABLE_REG));
+#elif defined(TARGET_ARCH_LOONG64)
+  ASSERT(IsCalleeSavedRegister(NULL_REG));
+  ASSERT(IsCalleeSavedRegister(WRITE_BARRIER_STATE)); 
 #elif defined(TARGET_ARCH_RISCV64)
   ASSERT(IsCalleeSavedRegister(NULL_REG));
   ASSERT(IsCalleeSavedRegister(WRITE_BARRIER_STATE));
@@ -7673,7 +7676,7 @@ bool DoubleToIntegerInstr::SupportsFloorAndCeil() {
 #if defined(TARGET_ARCH_X64)
   return CompilerState::Current().is_aot() || FLAG_target_unknown_cpu;
 #elif defined(TARGET_ARCH_ARM64) || defined(TARGET_ARCH_RISCV32) ||            \
-    defined(TARGET_ARCH_RISCV64)
+    defined(TARGET_ARCH_RISCV64) || defined(TARGET_ARCH_LOONG64)
   return true;
 #else
   return false;
@@ -8126,8 +8129,8 @@ LocationSummary* StoreFieldInstr::MakeLocationSummary(Zone* zone,
   summary->set_in(kInstancePos, Location::RequiresRegister());
   const Representation rep = slot().representation();
 #if defined(TARGET_ARCH_ARM64) || defined(TARGET_ARCH_RISCV32) ||              \
-    defined(TARGET_ARCH_RISCV64)
-  // ARM64 and RISC-V have dedicated zero and null registers which can be
+    defined(TARGET_ARCH_RISCV64) || defined(TARGET_ARCH_LOONG64)
+  // ARM64, RISC-V, and LOONG64 have dedicated zero and null registers which can be
   // used in store instructions.
   if (RepresentationUtils::ValueSize(rep) <= compiler::target::kWordSize) {
     if (auto constant = value()->definition()->AsConstant()) {
@@ -8208,7 +8211,7 @@ void StoreFieldInstr::EmitNativeCode(FlowGraphCompiler* compiler) {
   }
 
 #if defined(TARGET_ARCH_ARM64) || defined(TARGET_ARCH_RISCV32) ||              \
-    defined(TARGET_ARCH_RISCV64)
+    defined(TARGET_ARCH_RISCV64) || defined(TARGET_ARCH_LOONG64)
   if (locs()->in(kValuePos).IsConstant() &&
       locs()->in(kValuePos).constant_instruction()->HasZeroRepresentation()) {
     __ StoreToSlotNoBarrier(ZR, instance_reg, slot(), memory_order_);

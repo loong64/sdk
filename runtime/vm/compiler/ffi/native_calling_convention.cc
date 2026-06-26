@@ -111,6 +111,12 @@ class ArgumentAllocator : public ValueObject {
       cpu_regs_used = CallingConventions::kNumArgRegs;
     }
 #endif
+#if defined(TARGET_ARCH_LOONG64)
+    if (is_first_vararg) {
+      // Block all FPU registers.
+      BlockAllFpuRegisters();
+    }
+#endif
 #if defined(TARGET_ARCH_RISCV64) || defined(TARGET_ARCH_RISCV32)
     if (is_first_vararg) {
       // Block all FPU registers.
@@ -194,8 +200,7 @@ class ArgumentAllocator : public ValueObject {
       return *new (zone_)
           NativeFpuRegistersLocation(payload_type, payload_type, reg);
     }
-
-#if defined(TARGET_ARCH_RISCV64)
+#if defined(TARGET_ARCH_LOONG64) || defined(TARGET_ARCH_RISCV64)
     // After using up F registers, start bitcasting to X registers.
     if (HasAvailableCpuRegisters(1)) {
       const Register reg = AllocateCpuRegister();
@@ -480,8 +485,9 @@ class ArgumentAllocator : public ValueObject {
   }
 #endif  // defined(TARGET_ARCH_ARM64)
 
-#if defined(TARGET_ARCH_RISCV32) || defined(TARGET_ARCH_RISCV64)
-  // See RISC-V ABIs Specification
+#if defined(TARGET_ARCH_LOONG64) || defined(TARGET_ARCH_RISCV32) ||            \
+    defined(TARGET_ARCH_RISCV64)
+  // See LoongArch ELF psABI and RISC-V ABIs Specification.
   // https://github.com/riscv-non-isa/riscv-elf-psabi-doc/releases
   const NativeLocation& AllocateCompound(const NativeCompoundType& payload_type,
                                          bool is_vararg,
@@ -927,6 +933,24 @@ static const NativeLocation& CompoundResultLocation(
   return PointerToMemoryResultLocation(zone, payload_type);
 }
 #endif  // defined(TARGET_ARCH_ARM64)
+
+#if defined(TARGET_ARCH_LOONG64)
+// If allocated to integer or fpu registers as argument, same for return,
+// otherwise a pointer to the result location is passed in.
+static const NativeLocation& CompoundResultLocation(
+    Zone* zone,
+    const NativeCompoundType& payload_type,
+    bool has_varargs) {
+  ArgumentAllocator frame_state(zone, has_varargs);
+  const auto& location_as_argument =
+      frame_state.AllocateArgumentVariadic(payload_type);
+  if (!location_as_argument.IsStack() &&
+      !location_as_argument.IsPointerToMemory()) {
+    return location_as_argument;
+  }
+  return PointerToMemoryResultLocation(zone, payload_type);
+}
+#endif  // defined(TARGET_ARCH_LOONG64)
 
 #if defined(TARGET_ARCH_RISCV32) || defined(TARGET_ARCH_RISCV64)
 static const NativeLocation& CompoundResultLocation(

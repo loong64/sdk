@@ -34,6 +34,9 @@ class Abi {
   /// The application binary interface for Fuchsia on the Arm64 architecture.
   static const fuchsiaArm64 = _fuchsiaArm64;
 
+  /// The application binary interface for Fuchsia on the LoongArch64 architecture.
+  static const fuchsiaLoong64 = _fuchsiaLoong64;
+
   /// The application binary interface for Fuchsia on the X64 architecture.
   static const fuchsiaX64 = _fuchsiaX64;
 
@@ -60,6 +63,9 @@ class Abi {
 
   /// The application binary interface for linux on the IA32 architecture.
   static const linuxIA32 = _linuxIA32;
+
+  /// The application binary interface for linux on 64-bit LoongArch.
+  static const linuxLoong64 = _linuxLoong64;
 
   /// The application binary interface for linux on the X64 architecture.
   static const linuxX64 = _linuxX64;
@@ -95,6 +101,7 @@ class Abi {
     androidX64,
     androidRiscv64,
     fuchsiaArm64,
+    fuchsiaLoong64,
     fuchsiaX64,
     fuchsiaRiscv64,
     iosArm,
@@ -103,6 +110,7 @@ class Abi {
     linuxArm,
     linuxArm64,
     linuxIA32,
+    linuxLoong64,
     linuxX64,
     linuxRiscv32,
     linuxRiscv64,
@@ -139,6 +147,7 @@ class Abi {
   static const _androidX64 = Abi._(_Architecture.x64, _OS.android);
   static const _androidRiscv64 = Abi._(_Architecture.riscv64, _OS.android);
   static const _fuchsiaArm64 = Abi._(_Architecture.arm64, _OS.fuchsia);
+  static const _fuchsiaLoong64 = Abi._(_Architecture.loong64, _OS.fuchsia);
   static const _fuchsiaX64 = Abi._(_Architecture.x64, _OS.fuchsia);
   static const _fuchsiaRiscv64 = Abi._(_Architecture.riscv64, _OS.fuchsia);
   static const _iosArm = Abi._(_Architecture.arm, _OS.ios);
@@ -147,6 +156,7 @@ class Abi {
   static const _linuxArm = Abi._(_Architecture.arm, _OS.linux);
   static const _linuxArm64 = Abi._(_Architecture.arm64, _OS.linux);
   static const _linuxIA32 = Abi._(_Architecture.ia32, _OS.linux);
+  static const _linuxLoong64 = Abi._(_Architecture.loong64, _OS.linux);
   static const _linuxX64 = Abi._(_Architecture.x64, _OS.linux);
   static const _linuxRiscv32 = Abi._(_Architecture.riscv32, _OS.linux);
   static const _linuxRiscv64 = Abi._(_Architecture.riscv64, _OS.linux);
@@ -158,7 +168,7 @@ class Abi {
 }
 
 /// The hardware architectures the Dart VM runs on.
-enum _Architecture { arm, arm64, ia32, x64, riscv32, riscv64 }
+enum _Architecture { arm, arm64, ia32, loong64, x64, riscv32, riscv64 }
 
 /// The operating systems the Dart VM runs on.
 enum _OS { android, fuchsia, ios, linux, macos, windows }

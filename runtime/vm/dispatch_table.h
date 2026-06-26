@@ -32,6 +32,9 @@ class DispatchTable {
 #elif defined(TARGET_ARCH_RISCV32)
   // Max consecutive sub immediate value
   static constexpr intptr_t kOriginElement = 2048 / 4;
+#elif defined(TARGET_ARCH_LOONG64)
+  // Max consecutive sub immediate value
+  static constexpr intptr_t kOriginElement = 2048 / 8;
 #elif defined(TARGET_ARCH_RISCV64)
   // Max consecutive sub immediate value
   static constexpr intptr_t kOriginElement = 2048 / 8;

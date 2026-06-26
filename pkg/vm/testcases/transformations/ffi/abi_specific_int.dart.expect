@@ -240,4 +240,8 @@ constants  {
   #C90 = <core::int>[#C88, #C88, #C88, #C88, #C88, #C88, #C88, #C88, #C88, #C88, #C88, #C88, #C88, #C88, #C88, #C88, #C88, #C88, #C88, #C89, #C89, #C89]
   #C91 = core::_Override {}
   #C92 = self::_DummyAllocator {}
+  #C93 = 6
+  #C94 = "loong64"
+  #C95 = ffi::_Architecture {index:#C93, _name:#C94}
+  #C96 = ffi::Abi {_os:#C35, _architecture:#C95}
 }
